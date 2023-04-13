@@ -6,7 +6,11 @@ export function Form() {
 
     function handleSubmit(event) {
         event.preventDefault();
-
+        const todo = {
+            id:useId(),
+            task:task,
+            status:false,
+        }
         setTask('');
     }
 
@@ -15,12 +19,15 @@ export function Form() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Task:
-                <input type="text" value={task} onChange={handleChange} />
-            </label>
-            <button type="submit">Add Task</button>
-        </form>
+        <div>
+            <h1>Todo App</h1>
+            <form onSubmit={handleSubmit}>
+                <label>
+
+                    <input type="text" value={task} onChange={handleChange} placeholder="Add new task" />
+                </label>
+                <button type="submit">Add</button>
+            </form>
+        </div>
     );
 }

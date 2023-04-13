@@ -7,8 +7,8 @@ function App() {
 
   return (
     <div>
-      <Todo />
-      <Form />
+        <Form />
+        <Todo />
     </div>
 
   )
