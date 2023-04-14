@@ -1,4 +1,4 @@
-
+import {ADD_TODO} from "../actions/index.js";
 
 const dummy = [
     {id:23, task: "Jomoloko", status:false},
@@ -9,6 +9,11 @@ const dummy = [
 export const operationsReducer = (state = dummy, action) =>{
     switch (action.type)
     {
+        case ADD_TODO:
+        {
+            return [...state,action.payload];
+        }
+
         default: return state;
     }
 }

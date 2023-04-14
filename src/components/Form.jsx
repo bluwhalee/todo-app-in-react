@@ -1,17 +1,23 @@
 import {useState} from "react";
 import {useId} from "react";
+import {useDispatch} from "react-redux";
+import {addtodo} from "../redux/todo/actions"
+import { v4 as uuid } from 'uuid';
 
 export function Form() {
     const [task, setTask] = useState('');
-
+    const dispatch = useDispatch();
     function handleSubmit(event) {
         event.preventDefault();
+        const unique_id = uuid();
+        const small_id = unique_id.slice(0,8)
         const todo = {
-            id:useId(),
+            id:small_id,
             task:task,
             status:false,
         }
         setTask('');
+        dispatch(addtodo(todo))
     }
 
     function handleChange(event) {
