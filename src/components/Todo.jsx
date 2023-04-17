@@ -4,13 +4,16 @@ import {operationsReducer} from "../redux/todo/reducers/operations.js";
 import Icon, {icon} from "react-icons-kit"
 import {trash} from "react-icons-kit/feather/trash"
 import {edit2} from "react-icons-kit/feather/edit2"
-
+import {AddTodo} from "./AddTodo.jsx";
 export function Todo() {
 
     const todos = useSelector((state) => state.operationsReducer);
 
 
-    return (todos.map((todo)=>(
+    return (
+        <div>
+            <AddTodo />
+            {todos.map((todo)=>(
           <div key={todo.id}>
               <input type="checkbox" checked={todo.status}></input>
               <div>
@@ -23,6 +26,7 @@ export function Todo() {
               </div>
           </div>
         )
-    ))
+    )}
+        </div>)
 
 }

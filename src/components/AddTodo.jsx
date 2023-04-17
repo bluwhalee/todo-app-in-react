@@ -3,8 +3,9 @@ import {useId} from "react";
 import {useDispatch} from "react-redux";
 import {addtodo} from "../redux/todo/actions"
 import { v4 as uuid } from 'uuid';
+import InputComponent from "./common/inputComponent.jsx";
 
-export function Form() {
+export function AddTodo() {
     const [task, setTask] = useState('');
     const dispatch = useDispatch();
     function handleSubmit(event) {
@@ -29,8 +30,8 @@ export function Form() {
             <h1>Todo App</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-
-                    <input type="text" value={task} onChange={handleChange} placeholder="Add new task" />
+                    <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="Add new task" />
+                    {/*<input type="text" value={task} onChange={handleChange} placeholder="Add new task" />*/}
                 </label>
                 <button type="submit">Add</button>
             </form>
