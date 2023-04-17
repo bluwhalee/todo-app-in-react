@@ -1,4 +1,4 @@
-import {ADD_TODO} from "../actions/index.js";
+import {ADD_TODO, DELALL} from "../actions/index.js";
 
 const defaultState = [
     {id:23, task: "Jomoloko", status:false},
@@ -12,6 +12,10 @@ export const operationsReducer = (state = defaultState, action) =>{
         case ADD_TODO:
         {
             return [...state,action.payload];
+        }
+        case DELALL:
+        {
+            return [];
         }
 
         default: return state;
