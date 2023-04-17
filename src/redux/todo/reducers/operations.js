@@ -1,12 +1,12 @@
 import {ADD_TODO} from "../actions/index.js";
 
-const dummy = [
+const defaultState = [
     {id:23, task: "Jomoloko", status:false},
     {id:33, task: "Say Hello", status:true},
     {id:43, task: "Cycling", status:false},
     {id:53, task: "Badminton", status:true}
 ]
-export const operationsReducer = (state = dummy, action) =>{
+export const operationsReducer = (state = defaultState, action) =>{
     switch (action.type)
     {
         case ADD_TODO:

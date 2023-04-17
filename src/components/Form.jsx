@@ -10,9 +10,9 @@ export function Form() {
     function handleSubmit(event) {
         event.preventDefault();
         const unique_id = uuid();
-        const small_id = unique_id.slice(0,8)
+
         const todo = {
-            id:small_id,
+            id:unique_id,
             task:task,
             status:false,
         }
