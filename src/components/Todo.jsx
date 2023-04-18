@@ -1,6 +1,4 @@
-import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {operationsReducer} from "../redux/todo/reducers/operations.js";
 import Icon, {icon} from "react-icons-kit"
 import {trash} from "react-icons-kit/feather/trash"
 import {edit2} from "react-icons-kit/feather/edit2"
@@ -32,5 +30,4 @@ export function Todo() {
     )}
             <button className="btn btn-primary" onClick={()=>disp(delall())}>Delete</button>
         </div>)
-
 }
