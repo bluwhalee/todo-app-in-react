@@ -1,4 +1,5 @@
-import {ADD_TODO, DELALL} from "../actions/index.js";
+import {ADD_TODO} from "../actions/index.js";
+import {DELALL} from "../actions/index.js";
 
 const defaultState = [
     {id:23, task: "Jomoloko", status:false},
