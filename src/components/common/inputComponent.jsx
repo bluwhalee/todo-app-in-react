@@ -1,7 +1,9 @@
+import {TextField} from "@mui/material";
+
 const InputComponent = (props) =>
 {
     return(
-        <input type={props.type} value={props.value} onChange={props.HandleOnChange} placeholder={props.placeholder} />
+        <TextField onChange={props.HandleOnChange} value={props.value} placeholder={props.placeholder}/>
     )
 }
 export default InputComponent;

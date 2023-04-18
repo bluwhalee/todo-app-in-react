@@ -13,7 +13,6 @@ export const operationsReducer = (state = defaultState, action) =>{
         {
             return [...state,action.payload];
         }
-
         default: return state;
     }
 }
