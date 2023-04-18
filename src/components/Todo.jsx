@@ -1,7 +1,7 @@
 import {AddTodo} from "./AddTodo.jsx"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Checkbox} from "@mui/material";
+import {Button, Checkbox} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {delall} from "../redux/todo/actions/index.js";
 
@@ -26,7 +26,7 @@ export function Todo() {
           </div>
         )
     )}
-            <button className="btn btn-primary" onClick={()=>disp(delall())}>Delete</button>
+            <Button variant="contained" onClick={()=>disp(delall())}>Delete All</Button>
         </div>)
 
 }
