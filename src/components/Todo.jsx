@@ -28,5 +28,4 @@ export function Todo() {
     )}
             <Button variant="contained" onClick={()=>disp(delall())}>Delete All</Button>
         </div>)
-
 }
