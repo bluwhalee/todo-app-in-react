@@ -1,13 +1,13 @@
 export const ADD_TODO = 'ADD_TODO';
-export const DELALL = 'DELALL';
+export const DELALLTASKS = 'DELALLTASKS';
 export const addtodo = (payload) => {
     return {
         type:'ADD_TODO',
         payload
     }
 }
-export const delall = ()=> {
+export const delAllTasks = ()=> {
     return{
-        type: DELALL
+        type: DELALLTASKS
     }
 }
