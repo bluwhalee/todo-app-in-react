@@ -4,22 +4,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {Button, Checkbox} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {delAllTasks,removeTask, toggleStatus} from "../redux/todo/actions/index.js";
-import {useState, useEffect} from "react";
+import { useEffect} from "react";
+import {UpdateTaskForm} from "./common/UpdateTaskForm.jsx";
 export function Todo() {
     const todos = useSelector((state) => state.todoOperationsReducer);
-    const test = useSelector((state) => state);
+
     const Dispatch = useDispatch();
 
 
-    useEffect(()=>
-    {
-        console.log(todos);
-    },[todos])
 
-    useEffect(()=>
-    {
-        console.log(test);
-    },[test])
 
     return (
         <div>
@@ -36,6 +29,7 @@ export function Todo() {
                   <EditIcon />
                  <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
               </div>
+              <UpdateTaskForm todo={todo} />
           </div>
         )}
     )}
