@@ -1,4 +1,4 @@
-import {ADD_TODO, DELALLTASKS} from "../actions/index.js";
+import {ADD_TODO, DELALLTASKS, REMOVETODO} from "../actions/index.js";
 
 
 
@@ -18,6 +18,9 @@ export const todoOperationsReducer = (state = defaultState, action) =>{
         case DELALLTASKS:
             state = [];
             return [];
+        case REMOVETODO:
+            const filteredTodos = state.filter((todo)=>todo.id !== action.payload);
+            return filteredTodos;
         default: return state;
     }
 }
