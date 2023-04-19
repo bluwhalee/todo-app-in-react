@@ -12,7 +12,7 @@ export const delAllTasks = ()=> {
         type: DELALLTASKS
     }
 }
-export const removeTodo = (payload) =>
+export const removeTask = (payload) =>
 {
     return{
         type:REMOVETODO,
