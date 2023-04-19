@@ -3,7 +3,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Button, Checkbox} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {delAllTasks} from "../redux/todo/actions/index.js";
+import {delAllTasks,removeTask} from "../redux/todo/actions/index.js";
 export function Todo() {
     const todos = useSelector((state) => state.todoOperationsReducer);
     const Dispatch = useDispatch();
@@ -19,7 +19,7 @@ export function Todo() {
               </div>
               <div>
                  <EditIcon />
-                 <DeleteIcon />
+                 <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
               </div>
           </div>
         )
