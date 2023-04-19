@@ -19,8 +19,7 @@ export const todoOperationsReducer = (state = defaultState, action) =>{
             state = [];
             return [];
         case REMOVETODO:
-            const filteredTodos = state.filter((todo)=>todo.id !== action.payload);
-            return filteredTodos;
+            return state.filter((todo)=>todo.id !== action.payload);
         default: return state;
     }
 }
