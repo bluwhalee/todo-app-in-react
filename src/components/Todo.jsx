@@ -1,10 +1,13 @@
-import {useSelector} from "react-redux";
 import {AddTodo} from "./AddTodo.jsx"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Checkbox} from "@mui/material";
+import {Button, Checkbox} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {delAllTasks} from "../redux/todo/actions/index.js";
 export function Todo() {
-    const todos = useSelector((state) => state.operationsReducer);
+    const todos = useSelector((state) => state.todoOperationsReducer);
+    const Dispatch = useDispatch();
+
     return (
         <div>
             <AddTodo />
@@ -21,5 +24,6 @@ export function Todo() {
           </div>
         )
     )}
+            <Button variant="contained" onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
         </div>)
 }

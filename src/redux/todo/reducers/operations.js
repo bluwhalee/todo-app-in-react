@@ -1,4 +1,6 @@
-import {ADD_TODO} from "../actions/index.js";
+import {ADD_TODO, DELALLTASKS} from "../actions/index.js";
+
+
 
 const defaultState = [
     {id:23, task: "Jomoloko", status:false},
@@ -6,13 +8,16 @@ const defaultState = [
     {id:43, task: "Cycling", status:false},
     {id:53, task: "Badminton", status:true}
 ]
-export const operationsReducer = (state = defaultState, action) =>{
+export const todoOperationsReducer = (state = defaultState, action) =>{
     switch (action.type)
     {
         case ADD_TODO:
         {
             return [...state,action.payload];
         }
+        case DELALLTASKS:
+            state = [];
+            return [];
         default: return state;
     }
 }
