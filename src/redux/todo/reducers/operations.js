@@ -8,10 +8,6 @@ const defaultState = [
     {id:43, task: "Cycling", status:false},
     {id:53, task: "Badminton", status:true}
 ]
-
-// state.map(item =>
-//     item.id === action.payload.id ? { ...item, status: action.payload.status } : item
-// );
 export const todoOperationsReducer = (state = defaultState, action) =>{
     switch (action.type)
     {
