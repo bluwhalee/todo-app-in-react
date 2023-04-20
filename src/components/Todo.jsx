@@ -12,13 +12,16 @@ export function Todo() {
     const [updateForm,setUpdateForm] = useState(false);
     return (
         <div>
-            <div>
-                <Typography variant='h4'>Todo App</Typography>
-                <AddTodo />
+            <div className="innerContainer">
+                <div className="titleContainer">
+                    <Typography variant='h4'>Todo App</Typography>
+                    <Typography variant='p' sx={{borderBottom:'1px solid', display:'block',p:'10px'}}>A simple React Todo List app</Typography>
+
+                </div>
                 {todos.map((todo)=>{
 
                     return(
-                        <div>
+                        <div className="taskContainer">
                             <Box display="flex" justifyContent="space-between" alignItems="center">
 
                                 <div>
@@ -33,7 +36,17 @@ export function Todo() {
                         </div>
                     )}
                 )}
-                <Button variant="contained" color="secondary" onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
+                <AddTodo />
+                <Button sx={{
+                    backgroundColor: "#f44336",
+                    color: "#ffffff",
+                    borderColor: "#f44336",
+                    height: 48,
+                    "&:hover": {
+                        backgroundColor: "#d32f2f",
+                        borderColor: "#d32f2f",
+                    },
+                }} variant="contained" color="secondary" onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
             </div>
         </div>
         )
