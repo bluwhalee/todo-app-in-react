@@ -1,19 +1,13 @@
 import {AddTodo} from "./AddTodo.jsx"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Button, Checkbox} from "@mui/material";
+import {Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {delAllTasks,removeTask, toggleStatus} from "../redux/todo/actions/index.js";
-import { useEffect} from "react";
 import {UpdateTaskForm} from "./common/UpdateTaskForm.jsx";
 export function Todo() {
     const todos = useSelector((state) => state.todoOperationsReducer);
-
     const Dispatch = useDispatch();
-
-
-
-
     return (
         <div>
             <AddTodo />
