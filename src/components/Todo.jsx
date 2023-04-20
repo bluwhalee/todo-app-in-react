@@ -1,4 +1,5 @@
 import {AddTodo} from "./AddTodo.jsx"
+import {useState} from "react";
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Button} from "@mui/material";
@@ -8,6 +9,7 @@ import {UpdateTaskForm} from "./common/UpdateTaskForm.jsx";
 export function Todo() {
     const todos = useSelector((state) => state.todoOperationsReducer);
     const Dispatch = useDispatch();
+    const [updateForm,setUpdateForm] = useState(false);
     return (
         <div>
             <AddTodo />
@@ -20,10 +22,10 @@ export function Todo() {
                   <p style={todo.status?{textDecoration:"line-through"}:{textDecoration:"none"}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}} >{todo.task}</p>
               </div>
               <div>
-                  <EditIcon />
-                 <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
+                  <EditIcon onClick={()=>setUpdateForm((prev) => ({...prev,[todo.id]:!prev[todo.id]}))}/>
+                  <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
               </div>
-              <UpdateTaskForm todo={todo} />
+              {updateForm[todo.id]?<UpdateTaskForm todo={todo}/>:<h1></h1>}
           </div>
         )}
     )}
