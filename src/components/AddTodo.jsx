@@ -23,6 +23,7 @@ export function AddTodo() {
     }
     return (
         <div>
+            <h1>Todo App</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="Add new task" />
