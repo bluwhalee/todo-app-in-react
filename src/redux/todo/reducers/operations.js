@@ -1,6 +1,4 @@
-import {ADD_TODO, DELALLTASKS, REMOVETODO, TOGGLESTATUS} from "../actions/index.js";
-
-
+import {ADD_TODO, DELALLTASKS, REMOVETODO, TOGGLESTATUS,UPDATETASK} from "../actions/index.js";
 
 const defaultState = [
     {id:23, task: "Jomoloko", status:false},
@@ -12,10 +10,7 @@ export const todoOperationsReducer = (state = defaultState, action) =>{
     switch (action.type)
     {
         case ADD_TODO:
-        {
             return [...state,action.payload];
-            return [...state,action]
-        }
         case DELALLTASKS:
             state = [];
             return [];
@@ -24,6 +19,10 @@ export const todoOperationsReducer = (state = defaultState, action) =>{
         case TOGGLESTATUS:
             return state.map(task =>
                     task.id===action.payload?{...task, status: !task.status}:task
+            );
+        case UPDATETASK:
+            return state.map(item =>
+                item.id===action.payload.id?{...item,task:action.payload.task}:item
             );
         default: return state;
     }

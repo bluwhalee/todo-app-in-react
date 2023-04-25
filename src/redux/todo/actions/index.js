@@ -2,6 +2,7 @@ export const ADD_TODO = 'ADD_TODO';
 export const DELALLTASKS = 'DELALLTASKS';
 export const REMOVETODO = 'REMOVETODO'
 export const TOGGLESTATUS = 'TOGGLESTATUS'
+export const UPDATETASK = 'UPDATETASK'
 export const addtodo = (payload) => {
     return {
         type:'ADD_TODO',
@@ -28,3 +29,11 @@ export const toggleStatus = (payload) =>
         payload
     }
 }
+export const updateTask = (payload)=>
+{
+    return{
+        type:UPDATETASK,
+        payload
+    }
+}
+
