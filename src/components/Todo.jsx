@@ -1,6 +1,7 @@
 
 // External libraries
 import { Button, Box, Typography } from "@mui/material";
+import {makeStyles} from "@mui/styles";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
@@ -13,41 +14,68 @@ import { UpdateTaskForm } from "./common/UpdateTaskForm.jsx";
 // Local state
 import { delAllTasks, removeTask, toggleStatus } from "../redux/todo/actions/index.js";
 
+const useStyles = makeStyles({
+    innerContainer: {
+        background: '#FE6666',
+        padding: '10px 0px',
+    },
+    titleContainer: {
+        textAlign: 'left',
+        padding: '10px 40px',
+    },
+    descText: {
+        borderBottom:'1px solid',
+        display:'block',
+        p:'10px',
+    },
+    todoContainer: {
 
+        padding: '0px 0px',
+        color: '#F7F1F1',
+    },
+    taskContainer: {
+        background: '#FF7776',
+        display:'flex',
+        justifyContent:"space-between",
+        alignItems:"center",
+    },
+
+})
 export function Todo() {
+    const todoClasses = useStyles();
     const todos = useSelector((state) => state.todoOperationsReducer);
     const Dispatch = useDispatch();
     const [updateForm,setUpdateForm] = useState(false);
     return (
-        <div>
-            <div className="innerContainer">
-                <div className="titleContainer">
+        <Box>
+            <Box className={todoClasses.innerContainer}>
+                <Box className={todoClasses.titleContainer}>
                     <Typography variant='h4'>Todo App</Typography>
-                    <Typography variant='p' sx={{borderBottom:'1px solid', display:'block',p:'10px'}}>A simple React Todo List app</Typography>
+                    <Typography variant='p' className={todoClasses.descText} >A simple React Todo List app</Typography>
 
-                </div>
+                </Box>
                 {todos.map((todo)=>{
 
                     return(
-                        <div key={todo.id} className="taskContainer">
+                        <Box key={todo.id} className={todoClasses.todoContainer}>
 
-                            <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <Box className={todoClasses.taskContainer}>
 
-                                <div>
+                                <Box>
                                     <p style={todo.status?{textDecoration:"line-through"}:{textDecoration:"none"}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}} >{todo.task}</p>
-                                </div>
-                                <div>
+                                </Box>
+                                <Box>
                                     <EditIcon onClick={()=>setUpdateForm((prev) => ({...prev,[todo.id]:!prev[todo.id]}))}/>
                                     <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
-                                </div>
+                                </Box>
                             </Box>
                             {updateForm[todo.id]?<UpdateTaskForm todo={todo}/>:<h1></h1>}
-                        </div>
+                        </Box>
                     )}
                 )}
                 <AddTodo />
                 <Button sx={{
-                    backgroundColor: "#f44336",
+                    background: "#f44336",
                     color: "#ffffff",
                     borderColor: "#f44336",
                     height: 48,
@@ -56,7 +84,7 @@ export function Todo() {
                         borderColor: "#d32f2f",
                     },
                 }} variant="contained" color="secondary" onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
-            </div>
-        </div>
+            </Box>
+        </Box>
         )
 }

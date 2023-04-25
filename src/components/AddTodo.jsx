@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addtodo} from "../redux/todo/actions"
+import {addtodo} from "../redux/todo/actions";
 import { v4 as uuid } from 'uuid';
 import InputComponent from "./common/inputComponent.jsx";
-import {Button} from "@mui/material";
+import {Box, Button} from "@mui/material";
+
 
 export function AddTodo() {
     const [task, setTask] = useState('');
@@ -24,13 +25,11 @@ export function AddTodo() {
         setTask(event.target.value);
     }
     return (
-        <div>
+        <Box>
             <form onSubmit={handleSubmit}>
-                <label>
-                    <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="Add new task" />
-                </label>
+                <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="Add new task" />
                 <Button type='submit' color="secondary" sx={{border:1,borderRadius:0,marginLeft:'5px'}}>Add Todo</Button>
             </form>
-        </div>
+        </Box>
     );
 }
