@@ -1,23 +1,11 @@
-#root
-{
+#root {
+  margin: 0px;
+  padding: 0px;
   text-align: center;
-  margin: 20px;
   color: #F7F1F1;
-  font-family: 'Poppins'
+  font-family: 'Poppins';
 }
-.innerContainer
+body
 {
-  background-color: #FE6666;
-  padding: 10px 0px;
-}
-.titleContainer
-{
-  text-align: left;
-  padding: 10px 40px;
-}
-.taskContainer
-{
-  background-color: #FF7776;
-  padding: 0px 0px;
-  color: #F7F1F1;
+  margin: 0px;
 }

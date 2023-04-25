@@ -13,11 +13,26 @@ import { UpdateTaskForm } from "./common/UpdateTaskForm.jsx";
 
 // Local state
 import { delAllTasks, removeTask, toggleStatus } from "../redux/todo/actions/index.js";
+import bgimg from '../assets/pexels-codioful-(formerly-gradienta)-7130494.jpg'
 
 const useStyles = makeStyles({
+    mainCont:
+    {
+        height:'100vh',
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundImage: 'url("src/assets/pexels-codioful-(formerly-gradienta)-7130494.jpg")',
+        backgroundSize: 'cover'
+    },
     innerContainer: {
         background: '#FE6666',
         padding: '10px 0px',
+        minWidth  : '500px',
+        boxShadow: '-14px -14px 0px -2px rgba(0,0,0,0.15)',
+        WebkitBoxShadow: '-14px -14px 0px -2px rgba(0,0,0,0.15)',
+        MozBoxShadow: '-14px -14px 0px -2px rgba(0,0,0,0.15)',
+
     },
     titleContainer: {
         textAlign: 'left',
@@ -27,6 +42,7 @@ const useStyles = makeStyles({
         borderBottom:'1px solid',
         display:'block',
         p:'10px',
+        marginBottom : '20px',
     },
     todoContainer: {
 
@@ -38,6 +54,10 @@ const useStyles = makeStyles({
         display:'flex',
         justifyContent:"space-between",
         alignItems:"center",
+        padding:'5px 10px'
+    },
+    updateForm:{
+      margin:'10px'
     },
 
 })
@@ -47,7 +67,7 @@ export function Todo() {
     const Dispatch = useDispatch();
     const [updateForm,setUpdateForm] = useState(false);
     return (
-        <Box>
+        <Box className={todoClasses.mainCont}>
             <Box className={todoClasses.innerContainer}>
                 <Box className={todoClasses.titleContainer}>
                     <Typography variant='h4'>Todo App</Typography>
@@ -69,7 +89,12 @@ export function Todo() {
                                     <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
                                 </Box>
                             </Box>
-                            {updateForm[todo.id]?<UpdateTaskForm todo={todo}/>:<h1></h1>}
+                            {updateForm[todo.id]?
+                                <Box className={todoClasses.updateForm}>
+                                    <UpdateTaskForm todo={todo} />
+                                </Box>:<h1></h1>
+                            }
+
                         </Box>
                     )}
                 )}
