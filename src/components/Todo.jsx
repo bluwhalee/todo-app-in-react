@@ -1,11 +1,19 @@
-import {AddTodo} from "./AddTodo.jsx"
-import {useState} from "react";
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete';
-import {Button, Typography, Box} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {delAllTasks,removeTask, toggleStatus} from "../redux/todo/actions/index.js";
-import {UpdateTaskForm} from "./common/UpdateTaskForm.jsx";
+
+// External libraries
+import { Button, Box, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// Internal components
+import { AddTodo } from "./AddTodo.jsx";
+import { UpdateTaskForm } from "./common/UpdateTaskForm.jsx";
+
+// Local state
+import { delAllTasks, removeTask, toggleStatus } from "../redux/todo/actions/index.js";
+
+
 export function Todo() {
     const todos = useSelector((state) => state.todoOperationsReducer);
     const Dispatch = useDispatch();
@@ -18,7 +26,7 @@ export function Todo() {
                 {todos.map((todo)=>{
 
                     return(
-                        <div>
+                        <div key={todo.id}>
                             <Box display="flex" justifyContent="space-between" alignItems="center">
 
                                 <div>
