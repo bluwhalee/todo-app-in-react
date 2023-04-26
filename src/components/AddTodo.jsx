@@ -36,7 +36,7 @@ export function AddTodo() {
             <Typography variant='h6'>New Todo</Typography>
             <form onSubmit={handleSubmit} style={{display:'flex'}}>
                 <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="New Todo" />
-                <Button type='submit' color="secondary" sx={{border:1,borderRadius:0,marginLeft:'5px'}}>Add Todo</Button>
+                <Button type='submit' color="secondary" sx={{'&:hover': {cursor: 'pointer',},width:'100px',border:1,borderRadius:0,marginLeft:'5px'}}>Add Todo</Button>
             </form>
         </Box>
     );

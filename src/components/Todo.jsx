@@ -58,7 +58,7 @@ const useStyles = makeStyles({
         display:'flex',
         justifyContent:"space-between",
         alignItems:"center",
-        padding:'5px 10px'
+        padding:'10px 10px'
     },
     updateForm:{
       margin:'10px 0px',
@@ -71,7 +71,7 @@ export function Todo() {
     const todoClasses = useStyles();
     const todos = useSelector((state) => state.todoOperationsReducer);
     const Dispatch = useDispatch();
-    const [updateForm,setUpdateForm] = useState(false);
+    const [updateForm,setUpdateForm] = useState(-1);
     return (
         <Box className={todoClasses.mainCont}>
             <Box className={todoClasses.innerContainer}>
@@ -80,27 +80,29 @@ export function Todo() {
                         <Typography variant='h4'>Todo App</Typography>
                         <Typography variant='p' className={todoClasses.descText} >A simple React Todo List app</Typography>
                     </Box>
-                    <Button type='submit' color="secondary" sx={{height:'default', border:1,borderRadius:0,marginLeft:'5px'}} onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
+                    {todos.length!==0 && <Button type='submit' color="secondary" sx={{'&:hover': {cursor: 'pointer',},height:'default', border:1,borderRadius:0,marginLeft:'5px'}} onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>}
                 </Box>
                 {todos.map((todo)=>{
 
                     return(
 
-                        <Box>
-                            <Box key={todo.id} className={todoClasses.todoInnerContainer}>
+                        <Box key={todo.id}>
+                            <Box  className={todoClasses.todoInnerContainer}>
 
                                 <Box className={todoClasses.taskContainer}>
 
                                     <Box>
-                                        <p style={todo.status?{textDecoration:"line-through"}:{textDecoration:"none"}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}} >{todo.task}</p>
-                                    </Box>
+                                        <Typography variant='p' sx={{textDecoration: todo.status?'line-through':'none','&:hover': {cursor: 'pointer',}}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}}>{todo.task}</Typography>
+                                        </Box>
                                     <Box>
-                                        <EditIcon onClick={()=>setUpdateForm((prev) => ({...prev,[todo.id]:!prev[todo.id]}))}/>
-                                        <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
+                                        <EditIcon sx={{'&:hover': {cursor: 'pointer',}}} onClick={()=>{setUpdateForm((prev) => {
+                                            return prev === todo.id ? -1 : todo.id;
+                                        });} }/>
+                                        <DeleteIcon sx={{'&:hover': {cursor: 'pointer',}}} onClick={()=>Dispatch(removeTask(todo.id))} />
                                     </Box>
                                 </Box>
                             </Box>
-                            {updateForm[todo.id]&&
+                            {updateForm === todo.id &&
                                 <Box className={todoClasses.updateForm}>
                                     <UpdateTaskForm todo={todo} />
                                 </Box>
