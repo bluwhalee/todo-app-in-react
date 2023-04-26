@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {delAllTasks, updateTask} from "../../redux/todo/actions/index.js";
+import {updateTask} from "../../redux/todo/actions/index.js";
 import InputComponent from "./inputComponent.jsx";
-import {Button} from "@mui/material";
+import {Button, Box} from "@mui/material";
 
 export const UpdateTaskForm = (props) => {
     const[task, settask] = useState(props.todo.task)
@@ -13,12 +13,12 @@ export const UpdateTaskForm = (props) => {
          Dispatch(updateTask(todo))
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <InputComponent value={task} HandleOnChange={(e)=>settask(e.target.value)}  />
+        <Box>
+            <form onSubmit={handleSubmit} style={{display:'flex'}}>
+                <InputComponent value={task} HandleOnChange={(e)=>settask(e.target.value)}/>
 
                 <Button type='submit' color="secondary" sx={{border:1,borderRadius:0,marginLeft:'5px'}}>Update</Button>
             </form>
-        </div>
+        </Box>
     )
 }

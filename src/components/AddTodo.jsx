@@ -9,7 +9,7 @@ import {makeStyles} from "@mui/styles";
 const styles = makeStyles({
     formCont:{
         textAlign:'left',
-        padding : '10px 20px'
+        padding : '10px 40px'
     },
 })
 export function AddTodo() {
@@ -34,7 +34,7 @@ export function AddTodo() {
     return (
         <Box className={AddClasses.formCont}>
             <Typography variant='h6'>New Todo</Typography>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{display:'flex'}}>
                 <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="New Todo" />
                 <Button type='submit' color="secondary" sx={{border:1,borderRadius:0,marginLeft:'5px'}}>Add Todo</Button>
             </form>

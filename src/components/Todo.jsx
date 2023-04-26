@@ -35,7 +35,10 @@ const useStyles = makeStyles({
 
     },
     titleContainer: {
-        textAlign: 'left',
+        display:'flex',
+        textAlign:'left',
+        justifyContent:'space-between',
+        alignItems:'flex-end',
         padding: '10px 40px',
     },
     descText: {
@@ -44,20 +47,23 @@ const useStyles = makeStyles({
         p:'10px',
         marginBottom : '20px',
     },
-    todoContainer: {
 
-        padding: '0px 0px',
+    todoInnerContainer: {
+        background: '#ff7776',
+        padding: '0px 40px',
         color: '#F7F1F1',
+        margin:'2px 0px'
     },
     taskContainer: {
-        background: '#FF7776',
         display:'flex',
         justifyContent:"space-between",
         alignItems:"center",
         padding:'5px 10px'
     },
     updateForm:{
-      margin:'10px'
+      margin:'10px 0px',
+      padding: '0px 40px',
+      background: '#FE6666',
     },
 
 })
@@ -70,45 +76,41 @@ export function Todo() {
         <Box className={todoClasses.mainCont}>
             <Box className={todoClasses.innerContainer}>
                 <Box className={todoClasses.titleContainer}>
-                    <Typography variant='h4'>Todo App</Typography>
-                    <Typography variant='p' className={todoClasses.descText} >A simple React Todo List app</Typography>
-
+                    <Box>
+                        <Typography variant='h4'>Todo App</Typography>
+                        <Typography variant='p' className={todoClasses.descText} >A simple React Todo List app</Typography>
+                    </Box>
+                    <Button type='submit' color="secondary" sx={{height:'default', border:1,borderRadius:0,marginLeft:'5px'}} onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
                 </Box>
                 {todos.map((todo)=>{
 
                     return(
-                        <Box key={todo.id} className={todoClasses.todoContainer}>
 
-                            <Box className={todoClasses.taskContainer}>
+                        <Box>
+                            <Box key={todo.id} className={todoClasses.todoInnerContainer}>
 
-                                <Box>
-                                    <p style={todo.status?{textDecoration:"line-through"}:{textDecoration:"none"}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}} >{todo.task}</p>
-                                </Box>
-                                <Box>
-                                    <EditIcon onClick={()=>setUpdateForm((prev) => ({...prev,[todo.id]:!prev[todo.id]}))}/>
-                                    <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
+                                <Box className={todoClasses.taskContainer}>
+
+                                    <Box>
+                                        <p style={todo.status?{textDecoration:"line-through"}:{textDecoration:"none"}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}} >{todo.task}</p>
+                                    </Box>
+                                    <Box>
+                                        <EditIcon onClick={()=>setUpdateForm((prev) => ({...prev,[todo.id]:!prev[todo.id]}))}/>
+                                        <DeleteIcon onClick={()=>Dispatch(removeTask(todo.id))} />
+                                    </Box>
                                 </Box>
                             </Box>
-                            {updateForm[todo.id]?
+                            {updateForm[todo.id]&&
                                 <Box className={todoClasses.updateForm}>
                                     <UpdateTaskForm todo={todo} />
-                                </Box>:<h1></h1>
+                                </Box>
                             }
-
                         </Box>
+
                     )}
                 )}
                 <AddTodo />
-                <Button sx={{
-                    background: "#f44336",
-                    color: "#ffffff",
-                    borderColor: "#f44336",
-                    height: 48,
-                    "&:hover": {
-                        backgroundColor: "#d32f2f",
-                        borderColor: "#d32f2f",
-                    },
-                }} variant="contained" color="secondary" onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>
+
             </Box>
         </Box>
         )
