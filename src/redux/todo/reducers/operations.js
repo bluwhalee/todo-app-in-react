@@ -15,7 +15,8 @@ export const todoOperationsReducer = (state = defaultState, action) =>{
             state = [];
             return [];
         case REMOVETODO:
-            return state.filter((todo)=>todo.id !== action.payload);
+            if(action.payload.status===true) return state
+            else return state.filter((todo)=>todo.id !== action.payload.id);
         case TOGGLESTATUS:
             return state.map(task =>
                     task.id===action.payload?{...task, status: !task.status}:task

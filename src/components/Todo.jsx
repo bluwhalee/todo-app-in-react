@@ -47,7 +47,6 @@ const useStyles = makeStyles({
         p:'10px',
         marginBottom : '20px',
     },
-
     todoInnerContainer: {
         background: '#ff7776',
         padding: '0px 40px',
@@ -65,7 +64,6 @@ const useStyles = makeStyles({
       padding: '0px 40px',
       background: '#FE6666',
     },
-
 })
 export function Todo() {
     const todoClasses = useStyles();
@@ -83,14 +81,10 @@ export function Todo() {
                     {todos.length!==0 && <Button type='submit' color="secondary" sx={{'&:hover': {cursor: 'pointer',},height:'default', border:1,borderRadius:0,marginLeft:'5px'}} onClick={()=>Dispatch(delAllTasks())}>Delete All</Button>}
                 </Box>
                 {todos.map((todo)=>{
-
                     return(
-
                         <Box key={todo.id}>
                             <Box  className={todoClasses.todoInnerContainer}>
-
                                 <Box className={todoClasses.taskContainer}>
-
                                     <Box>
                                         <Typography variant='p' sx={{textDecoration: todo.status?'line-through':'none','&:hover': {cursor: 'pointer',}}} onClick={()=>{console.log(23);Dispatch(toggleStatus(todo.id))}}>{todo.task}</Typography>
                                         </Box>
@@ -98,7 +92,7 @@ export function Todo() {
                                         <EditIcon sx={{'&:hover': {cursor: 'pointer',}}} onClick={()=>{setUpdateForm((prev) => {
                                             return prev === todo.id ? -1 : todo.id;
                                         });} }/>
-                                        <DeleteIcon sx={{'&:hover': {cursor: 'pointer',}}} onClick={()=>Dispatch(removeTask(todo.id))} />
+                                        <DeleteIcon sx={{'&:hover': {cursor: 'pointer',}}} onClick={()=>Dispatch(removeTask(todo))} />
                                     </Box>
                                 </Box>
                             </Box>
@@ -108,11 +102,9 @@ export function Todo() {
                                 </Box>
                             }
                         </Box>
-
                     )}
                 )}
                 <AddTodo />
-
             </Box>
         </Box>
         )
