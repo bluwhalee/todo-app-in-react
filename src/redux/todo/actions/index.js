@@ -21,7 +21,6 @@ export const removeTask = (payload) =>
         payload
     }
 }
-
 export const toggleStatus = (payload) =>
 {
     return{
@@ -36,4 +35,3 @@ export const updateTask = (payload)=>
         payload
     }
 }
-

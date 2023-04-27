@@ -1,14 +1,24 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addtodo} from "../redux/todo/actions"
+import {addtodo} from "../redux/todo/actions";
 import { v4 as uuid } from 'uuid';
 import InputComponent from "./common/inputComponent.jsx";
+import {Box, Button ,Typography} from "@mui/material";
+import {makeStyles} from "@mui/styles";
 
+const styles = makeStyles({
+    formCont:{
+        textAlign:'left',
+        padding : '10px 40px'
+    },
+})
 export function AddTodo() {
+    const AddClasses =  styles();
     const [task, setTask] = useState('');
     const dispatch = useDispatch();
     function handleSubmit(event) {
         event.preventDefault();
+        if(task === ""){return;}
         const unique_id = uuid();
         const todo = {
             id:unique_id,
@@ -22,13 +32,12 @@ export function AddTodo() {
         setTask(event.target.value);
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="Add new task" />
-                </label>
-                <button type="submit">Add</button>
+        <Box className={AddClasses.formCont}>
+            <Typography variant='h6'>New Todo</Typography>
+            <form onSubmit={handleSubmit} style={{display:'flex'}}>
+                <InputComponent  type="text" value={task} HandleOnChange={handleChange} placeholder="New Todo" />
+                <Button type='submit' color="secondary" sx={{'&:hover': {cursor: 'pointer',},width:'100px',border:1,borderRadius:0,marginLeft:'5px'}}>Add Todo</Button>
             </form>
-        </div>
+        </Box>
     );
 }
